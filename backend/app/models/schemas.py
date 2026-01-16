@@ -13,6 +13,7 @@ class ComplianceAssessment(BaseModel):
     relevant_clauses: List[str] = Field(default_factory=list, description="Specific clauses or rules found")
     sources: List[ComplianceSource] = Field(default_factory=list, description="Source documents referenced")
     conversation_type: str = Field(default="analysis", description="Type: 'analysis', 'follow_up', 'clarification', or 'expansion'")
+    follow_up_questions: List[str] = Field(default_factory=list, description="Contextual follow-up questions to guide the user")
 
 class QueryRequest(BaseModel):
     query: str

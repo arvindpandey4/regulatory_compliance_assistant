@@ -13,6 +13,7 @@ The Regulatory Compliance Assistant transforms complex regulatory compliance que
 - **💬 Context-Aware Conversations**: Maintains conversation history for follow-up questions and clarifications
 - **🎯 Compliance Assessment**: Provides structured compliance status (Compliant/Non-Compliant/Needs Review)
 - **📖 Source Citations**: Every response includes references to specific regulatory documents
+- **💡 Intelligent Follow-up Questions**: Automatically suggests context-aware next questions to guide deeper exploration
 - **⚡ Fast Track Retrieval**: Instant answers from a curated Golden Knowledge Base for high-confidence matches
 - **🧠 Dynamic Reranking**: Advanced relevance scoring (FlashRank) to prioritize the best context
 - **🔍 Smart Query Classification**: Distinguishes between initial queries, follow-ups, clarifications, and expansions
@@ -66,6 +67,7 @@ The Regulatory Compliance Assistant transforms complex regulatory compliance que
 │  │  • Context Assembly                                  │   │
 │  │  • LLM Orchestration                                 │   │
 │  │  • Response Parsing                                  │   │
+│  │  • Follow-up Suggestions                             │   │
 │  └──────┬───────────────────────────────────┬───────────┘   │
 │         │                                   │               │
 │         ▼                                   ▼               │
@@ -77,10 +79,10 @@ The Regulatory Compliance Assistant transforms complex regulatory compliance que
 │  └─────────────────┘              └──────────────────┘     │
 │         │                                                    │
 │         ▼                                                    │
-│  ┌─────────────────┐                                         │
-│  │ Golden KB Store │ (Fast Track Path)                       │
-│  │ (Direct Match)  │                                         │
-│  └─────────────────┘                                         │
+│  ┌─────────────────┐              ┌──────────────────┐      │
+│  │ Golden KB Store │ (Fast Track) │ Follow-up KB     │      │
+│  │ (Direct Match)  │              │ (Contextual Qs)  │      │
+│  └─────────────────┘              └──────────────────┘      │
 │         │                                                    │
 │         ▼                                                    │
 │  ┌─────────────────────────────────────────────────────┐   │
@@ -203,6 +205,8 @@ This safely terminates all processes and prevents unnecessary API token usage.
    - **Sources**: Referenced regulatory documents
 
 4. **Follow-up Questions**:
+   - **Smart Suggestions**: Click on the context-aware question chips to explore further
+   - **Manual Entry**: Or type your own customized questions:
    ```
    "Can you expand on the data minimization principle?"
    "What did you mean by retention periods?"
@@ -328,11 +332,13 @@ regulatory_compliance_assistant/
 │   │       ├── agent.py              # Compliance agent (core logic)
 │   │       ├── chat_history.py       # Conversation management
 │   │       ├── document_processor.py # PDF processing
+│   │       ├── followup_service.py   # Follow-up questions logic
 │   │       ├── reranker.py           # FlashRank reranking
 │   │       └── vector_store.py       # FAISS vector store
 │   ├── data/
 │   │   ├── documents/                # Source PDFs
 │   │   ├── knowledge_base.json       # Golden KB for fast track
+│   │   ├── followup_questions.json   # Contextual follow-up questions
 │   │   └── vector_store/             # FAISS index
 │   ├── ingest_kb.py                  # Script to ingest Golden KB
 │   ├── main.py                       # FastAPI app
@@ -405,6 +411,14 @@ Advanced techniques for speed and accuracy:
 - **Golden Knowledge Base**: A curated JSON store of high-confidence Q&A pairs. Queries matching these entries bypass the expensive LLM generation phase, providing instant, vetted answers.
 - **Dynamic Reranking**: Uses `FlashRank` to re-score retrieved documents. This ensures that the most semantically relevant chunks are prioritized in the context window, improving response quality significantly.
 - **Hybrid Retrieval**: Combines vector search with keyword matching (via reranking) for robust results.
+
+### 7. Intelligent Follow-up System (New)
+
+Proactive user guidance:
+- **Contextual Awareness**: Suggests questions relevant to the specific answer provided
+- **Knowledge Base Mapping**: Uses a dedicated KB to map complex topics to exploratory questions
+- **Interactive UI**: One-click chips allow users to dive deeper effortlessly
+- **Smart Fallback**: Provides general relevant questions when specific mappings aren't found
 
 ---
 

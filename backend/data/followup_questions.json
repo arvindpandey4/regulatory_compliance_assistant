@@ -1,0 +1,166 @@
+{
+    "kb_name": "Follow-up Questions KB (Compliance Agent)",
+    "version": "1.0",
+    "description": "Contextual follow-up questions to guide users deeper into compliance topics",
+    "followup_mappings": [
+        {
+            "kb_entry_id": "KB_DEF_001",
+            "category": "definition",
+            "topic": "Compliance Audit Definition",
+            "questions": [
+                "Would you like to know the specific objectives of compliance auditing in the public sector?",
+                "Are you interested in understanding the difference between regularity and propriety audits?",
+                "Do you need examples of what laws or regulations are typically audited?"
+            ]
+        },
+        {
+            "kb_entry_id": "KB_OBJ_001",
+            "category": "objective",
+            "topic": "Compliance Audit Objectives",
+            "questions": [
+                "Would you like to understand how accountability is measured in compliance audits?",
+                "Are you curious about the difference between regularity and propriety perspectives?",
+                "Do you want to know what happens when compliance objectives are not met?"
+            ]
+        },
+        {
+            "kb_entry_id": "KB_REG_PROP_001",
+            "category": "concepts",
+            "topic": "Regularity vs Propriety",
+            "questions": [
+                "Would you like specific examples of regularity violations?",
+                "Are you interested in understanding propriety violations in real-world scenarios?",
+                "Do you need guidance on how to assess both regularity and propriety in your audits?"
+            ]
+        },
+        {
+            "kb_entry_id": "KB_RULE_CHECKS_001",
+            "category": "criteria",
+            "topic": "Rule Evaluation",
+            "questions": [
+                "Would you like to know how to assess the adequacy of control mechanisms?",
+                "Are you interested in learning about transparency requirements in regulations?",
+                "Do you need examples of how effectiveness is measured in compliance audits?"
+            ]
+        },
+        {
+            "kb_entry_id": "KB_ELEMENTS_001",
+            "category": "fundamentals",
+            "topic": "Core Elements",
+            "questions": [
+                "Would you like to understand the role of each party in a compliance audit?",
+                "Are you curious about what constitutes 'subject matter' in different audit contexts?",
+                "Do you need help identifying the appropriate authorities and criteria for your audit?"
+            ]
+        },
+        {
+            "kb_entry_id": "KB_AUTHORITIES_CRITERIA_001",
+            "category": "criteria",
+            "topic": "Authorities and Criteria",
+            "questions": [
+                "Would you like examples of how to derive criteria from authorities?",
+                "Are you interested in understanding how to ensure criteria are objective and comparable?",
+                "Do you need guidance on selecting the right authorities for your specific audit?"
+            ]
+        },
+        {
+            "kb_entry_id": "KB_PROCESS_001",
+            "category": "process",
+            "topic": "Audit Process",
+            "questions": [
+                "Would you like detailed guidance on the planning phase of compliance audits?",
+                "Are you interested in learning about evidence gathering techniques?",
+                "Do you need help understanding how to evaluate evidence and form conclusions?"
+            ]
+        },
+        {
+            "kb_entry_id": "KB_PRINCIPLES_001",
+            "category": "principles",
+            "topic": "General Principles",
+            "questions": [
+                "Would you like to know how to apply professional skepticism in practice?",
+                "Are you interested in understanding the specific competence requirements for audit teams?",
+                "Do you need guidance on maintaining independence and objectivity during audits?"
+            ]
+        },
+        {
+            "kb_entry_id": "KB_RISK_MATERIALITY_001",
+            "category": "risk_materiality",
+            "topic": "Risk and Materiality",
+            "questions": [
+                "Would you like examples of how to assess inherent risk in different contexts?",
+                "Are you interested in understanding how to determine materiality thresholds?",
+                "Do you need help identifying qualitative factors that affect materiality?"
+            ]
+        },
+        {
+            "kb_entry_id": "KB_EVIDENCE_001",
+            "category": "evidence",
+            "topic": "Audit Evidence",
+            "questions": [
+                "Would you like to know how to determine if you have sufficient evidence?",
+                "Are you interested in learning techniques to improve evidence reliability?",
+                "Do you need guidance on corroborating evidence from multiple sources?"
+            ]
+        },
+        {
+            "kb_entry_id": "KB_EVIDENCE_TECHNIQUES_001",
+            "category": "evidence_methods",
+            "topic": "Evidence Collection Techniques",
+            "questions": [
+                "Would you like detailed guidance on conducting effective site visits?",
+                "Are you interested in learning how to design effective questionnaires for audits?",
+                "Do you need help understanding when to use analytical procedures versus physical inspection?"
+            ]
+        },
+        {
+            "kb_entry_id": "KB_SCOPE_001",
+            "category": "planning",
+            "topic": "Scope Definition",
+            "questions": [
+                "Would you like help determining the appropriate audit period for your specific case?",
+                "Are you interested in understanding how to select audit units based on risk?",
+                "Do you need guidance on balancing scope with available resources?"
+            ]
+        },
+        {
+            "kb_entry_id": "KB_PLANNING_OUTPUT_001",
+            "category": "planning",
+            "topic": "Audit Strategy and Plan",
+            "questions": [
+                "Would you like a template or example of an audit strategy document?",
+                "Are you interested in understanding how to allocate team members to specific tasks?",
+                "Do you need help defining sampling considerations for your audit?"
+            ]
+        },
+        {
+            "kb_entry_id": "KB_REPORTING_001",
+            "category": "reporting",
+            "topic": "Reporting Principles",
+            "questions": [
+                "Would you like guidance on implementing the contradictory process effectively?",
+                "Are you interested in understanding how to maintain objectivity when reporting findings?",
+                "Do you need help ensuring your reports are complete and timely?"
+            ]
+        },
+        {
+            "kb_entry_id": "KB_RESPONSE_SCHEMA_001",
+            "category": "output_format",
+            "topic": "Response Format",
+            "questions": [
+                "Would you like to see an example of a complete compliance assessment response?",
+                "Are you interested in understanding when to use each compliance status value?",
+                "Do you need help structuring your findings and recommendations?"
+            ]
+        }
+    ],
+    "general_followups": {
+        "description": "Generic follow-up questions for topics not covered in specific mappings",
+        "questions": [
+            "Would you like more specific examples related to this topic?",
+            "Are you interested in understanding how this applies to your specific situation?",
+            "Do you need clarification on any of the terms or concepts mentioned?",
+            "Would you like to know about related compliance requirements?"
+        ]
+    }
+}

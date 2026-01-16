@@ -10,6 +10,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
 from app.services.vector_store import VectorStoreService
 from app.models.schemas import ComplianceAssessment, ComplianceSource
+from app.services.followup_service import followup_service
 import os
 
 class AgentDeps:
@@ -40,7 +41,8 @@ CRITICAL: You MUST return a valid JSON object with these exact fields:
   "reasoning": "Detailed technical analysis here" or null,
   "relevant_clauses": ["clause 1", "clause 2"] or [],
   "sources": [],
-  "conversation_type": "analysis" or "follow_up" or "clarification" or "expansion"
+  "conversation_type": "analysis" or "follow_up" or "clarification" or "expansion",
+  "follow_up_questions": []
 }}
 
 RESPONSE FIELD (REQUIRED):
@@ -57,6 +59,10 @@ CONVERSATION_TYPE:
 - "analysis" = new compliance question
 - "follow_up" = "tell me more"
 - "clarification" = "what does X mean?"
+
+FOLLOW_UP_QUESTIONS (optional):
+- Will be populated automatically by the system
+- Leave as empty array []
 
 IMPORTANT: The 'response' field is MANDATORY and must contain a concise answer."""),
             ("user", """Previous Conversation:
@@ -80,6 +86,40 @@ Return ONLY valid JSON. Put the concise answer in 'response' field (REQUIRED), d
         json_pattern = r'```(?:json)?\s*(\{.*?\})\s*```'
         match = re.search(json_pattern, text, re.DOTALL)
         return match.group(1) if match else text
+    
+    def _add_followup_questions(self, result: ComplianceAssessment, docs: list) -> ComplianceAssessment:
+        """
+        Enrich the response with follow-up questions based on retrieved documents
+        
+        Args:
+            result: The ComplianceAssessment result from the LLM
+            docs: List of retrieved documents
+            
+        Returns:
+            Enhanced ComplianceAssessment with follow-up questions
+        """
+        # If result already has follow-up questions, don't override
+        if result.follow_up_questions and len(result.follow_up_questions) > 0:
+            return result
+        
+        # Try to find KB entry IDs from the retrieved documents
+        kb_ids = []
+        for doc in docs:
+            if doc.metadata.get("type") == "kb_entry":
+                kb_id = doc.metadata.get("id")
+                if kb_id:
+                    kb_ids.append(kb_id)
+        
+        # Get follow-up questions for the first KB entry found
+        if kb_ids:
+            followup_questions = followup_service.get_followup_questions(kb_ids[0], max_questions=3)
+            result.follow_up_questions = followup_questions
+        else:
+            # Use general follow-up questions if no KB entry found
+            general_questions = followup_service.get_followup_questions(None, max_questions=2)
+            result.follow_up_questions = general_questions
+        
+        return result
 
     async def run(self, query: str, deps: AgentDeps, history_context: str = ""):
         # Retrieve relevant documents
@@ -104,7 +144,10 @@ Return ONLY valid JSON. Put the concise answer in 'response' field (REQUIRED), d
                     kb_id = top_doc.metadata.get("id", "Unknown")
                     kb_title = top_doc.metadata.get("title", "Knowledge Base Entry")
                     
-                    print(f"[FAST PATH] Returning direct KB answer from {kb_id}")
+                    # Get follow-up questions for this KB entry
+                    followup_questions = followup_service.get_followup_questions(kb_id, max_questions=3)
+                    
+                    print(f"[FAST PATH] Returning direct KB answer from {kb_id} with {len(followup_questions)} follow-up questions")
                     
                     # Return structured response without LLM call
                     return type('obj', (object,), {'data': ComplianceAssessment(
@@ -117,7 +160,8 @@ Return ONLY valid JSON. Put the concise answer in 'response' field (REQUIRED), d
                             excerpt=direct_answer[:200] + "..." if len(direct_answer) > 200 else direct_answer,
                             relevance_score=1.0
                         )],
-                        conversation_type="kb_direct"
+                        conversation_type="kb_direct",
+                        follow_up_questions=followup_questions
                     )})
         
         # STANDARD PATH: Continue with LLM processing
@@ -141,6 +185,10 @@ Return ONLY valid JSON. Put the concise answer in 'response' field (REQUIRED), d
                 "history_context": history_context if history_context else "Start of conversation.",
                 "format_instructions": self.parser.get_format_instructions()
             })
+            
+            # Add follow-up questions to the result
+            result = self._add_followup_questions(result, docs)
+            
             return type('obj', (object,), {'data': result})
             
         except Exception:
@@ -162,6 +210,10 @@ Return ONLY valid JSON. Put the concise answer in 'response' field (REQUIRED), d
                 
                 # Create object from dict
                 data = ComplianceAssessment(**parsed)
+                
+                # Add follow-up questions
+                data = self._add_followup_questions(data, docs)
+                
                 return type('obj', (object,), {'data': data})
                 
             except Exception as e:

@@ -118,7 +118,8 @@ const ChatInterface = () => {
                 reasoning: data.reasoning,
                 sources: data.sources,
                 relevant_clauses: data.relevant_clauses,
-                conversation_type: data.conversation_type
+                conversation_type: data.conversation_type,
+                follow_up_questions: data.follow_up_questions || []
             };
             setMessages(prev => [...prev, botMessage]);
         } catch (error) {
@@ -260,6 +261,28 @@ const ChatInterface = () => {
                                                     <span className="max-w-[150px] truncate font-medium">{src.document_name}</span>
                                                     {src.page_number && <span className="opacity-50">• p{src.page_number}</span>}
                                                 </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Follow-up Questions */}
+                                {!isUser && msg.follow_up_questions && msg.follow_up_questions.length > 0 && (
+                                    <div className="mt-4 pt-3 border-t border-white/10">
+                                        <div className="text-xs font-medium text-gray-400 mb-3">💡 Explore further:</div>
+                                        <div className="flex flex-col gap-2">
+                                            {msg.follow_up_questions.map((question, i) => (
+                                                <button
+                                                    key={i}
+                                                    onClick={() => {
+                                                        setInput(question);
+                                                        textareaRef.current?.focus();
+                                                    }}
+                                                    className="group/fq text-left px-4 py-2.5 bg-gradient-to-r from-blue-500/10 to-purple-500/10 hover:from-blue-500/20 hover:to-purple-500/20 border border-blue-500/20 hover:border-blue-400/40 rounded-lg text-sm text-gray-300 hover:text-white transition-all duration-200 flex items-start gap-2"
+                                                >
+                                                    <span className="text-blue-400 mt-0.5">→</span>
+                                                    <span className="flex-1">{question}</span>
+                                                </button>
                                             ))}
                                         </div>
                                     </div>
