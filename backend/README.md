@@ -10,22 +10,26 @@ This system uses a **RAG (Retrieval-Augmented Generation)** architecture specifi
 -   **Framework**: FastAPI
 -   **LLM**: Google Gemini
 -   **Vector DB**: FAISS (CPU)
--   **Database**: MongoDB (Chat History)
+-   **Database**: MongoDB Atlas (Cloud - Chat History)
 -   **Embeddings**: Sentence-Transformers (all-MiniLM-L6-v2)
 
 ## Setup
 
-1.  **Install MongoDB**: Ensure MongoDB Community Server is installed and running on port 27017.
-2.  **Environment**: 
-    Check `.env` contains your `GEMINI_API_KEY`.
-3.  **Install Dependencies**:
+1.  **Environment Variables**: 
+    Create a `.env` file in the `backend` directory with:
+    ```env
+    GROQ_API_KEY=your_groq_api_key
+    MONGODB_URI=your_mongodb_atlas_connection_string
+    ```
+    (See `.env.example` for template)
+2.  **Install Dependencies**:
     ```bash
     cd backend
     python -m venv venv
     .\venv\Scripts\Activate.ps1
     pip install -r requirements.txt
     ```
-4.  **Run**:
+3.  **Run**:
     ```bash
     uvicorn main:app --reload
     ```

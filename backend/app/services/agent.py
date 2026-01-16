@@ -84,6 +84,43 @@ Return ONLY valid JSON. Put the concise answer in 'response' field (REQUIRED), d
     async def run(self, query: str, deps: AgentDeps, history_context: str = ""):
         # Retrieve relevant documents
         docs = deps.vector_store.search(query, k=5)
+        
+        # FAST PATH: Check if top result is a Golden KB entry
+        # If so, return direct answer without LLM processing
+        if docs and len(docs) > 0:
+            top_doc = docs[0]
+            is_kb_entry = top_doc.metadata.get("type") == "kb_entry"
+            
+            if is_kb_entry:
+                # Extract the structured content from the KB entry
+                content = top_doc.page_content
+                
+                # Parse out the CONTENT section (the actual answer)
+                import re
+                content_match = re.search(r'CONTENT:\s*(.+?)(?=\n\n[A-Z_]+:|$)', content, re.DOTALL)
+                
+                if content_match:
+                    direct_answer = content_match.group(1).strip()
+                    kb_id = top_doc.metadata.get("id", "Unknown")
+                    kb_title = top_doc.metadata.get("title", "Knowledge Base Entry")
+                    
+                    print(f"[FAST PATH] Returning direct KB answer from {kb_id}")
+                    
+                    # Return structured response without LLM call
+                    return type('obj', (object,), {'data': ComplianceAssessment(
+                        response=direct_answer,
+                        status=None,
+                        reasoning=f"Source: {kb_title} ({kb_id})",
+                        relevant_clauses=[],
+                        sources=[ComplianceSource(
+                            document_name=kb_title,
+                            excerpt=direct_answer[:200] + "..." if len(direct_answer) > 200 else direct_answer,
+                            relevance_score=1.0
+                        )],
+                        conversation_type="kb_direct"
+                    )})
+        
+        # STANDARD PATH: Continue with LLM processing
         context_str = "\n".join([d.page_content for d in docs])
         
         # Validate and manage token limits

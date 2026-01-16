@@ -1,0 +1,286 @@
+{
+    "kb_name": "Compliance Agent Golden KB (C&AG Compliance Auditing Guidelines)",
+    "version": "1.0",
+    "domain": "Compliance Auditing (Public Sector)",
+    "source_document": {
+        "title": "Compliance Auditing Guidelines – C&AG of India",
+        "year": "2016",
+        "type": "PDF",
+        "reference": "Uploaded file"
+    },
+    "entries": [
+        {
+            "id": "KB_DEF_001",
+            "category": "definition",
+            "title": "What is a Compliance Audit?",
+            "question_intents": [
+                "what is compliance audit",
+                "define compliance audit",
+                "meaning of compliance audit",
+                "what does compliance audit mean"
+            ],
+            "key_points": [
+                "Assessment of adherence to applicable laws, rules, regulations, orders, and instructions",
+                "Focuses on reporting deviations, weaknesses, propriety, accountability"
+            ],
+            "content": "Compliance audit is an assessment of whether applicable laws, rules, regulations, orders, and competent authority instructions are being complied with. It promotes accountability, transparency, and good governance by reporting deviations, identifying weaknesses, and assessing propriety."
+        },
+        {
+            "id": "KB_OBJ_001",
+            "category": "objective",
+            "title": "Objective of Public-Sector Compliance Auditing",
+            "question_intents": [
+                "what is the objective of compliance audit",
+                "why compliance audit is done",
+                "purpose of compliance auditing",
+                "what is the goal of compliance audit"
+            ],
+            "key_points": [
+                "Assess activities and transactions against governing authorities",
+                "Enable accountability of executive/public entities",
+                "Regularity + propriety perspective"
+            ],
+            "content": "The objective of public-sector compliance auditing is to assess whether activities, financial transactions, and information comply (in all material respects) with the authorities governing the entity. It supports accountability and deterrence and includes both regularity and propriety dimensions."
+        },
+        {
+            "id": "KB_REG_PROP_001",
+            "category": "concepts",
+            "title": "Regularity vs Propriety (Critical Distinction)",
+            "question_intents": [
+                "what is regularity audit",
+                "what is propriety audit",
+                "regularity vs propriety",
+                "difference between regularity and propriety"
+            ],
+            "key_points": [
+                "Regularity: formal criteria compliance",
+                "Propriety: ethical conduct + sound financial management principles"
+            ],
+            "content": "Regularity means adherence to formal criteria from relevant laws, regulations, and agreements. Propriety means adherence to sound public-sector financial management and ethical conduct, ensuring legality and competence even where actions appear formally compliant."
+        },
+        {
+            "id": "KB_RULE_CHECKS_001",
+            "category": "criteria",
+            "title": "How Rules/Regulations are Evaluated in Compliance Audit",
+            "question_intents": [
+                "how do auditors evaluate compliance",
+                "how to assess rules and regulations",
+                "what checks are done in compliance audit"
+            ],
+            "key_points": [
+                "Legality, adequacy, transparency, propriety/prudence, effectiveness",
+                "Consistency across authorities"
+            ],
+            "content": "Compliance audits evaluate whether rules and instructions are legal, adequate for control and safeguards, transparent and unambiguous, prudent and judicious, and effective in achieving objectives. They also examine whether rules and instructions are consistent with each other."
+        },
+        {
+            "id": "KB_ELEMENTS_001",
+            "category": "fundamentals",
+            "title": "Core Elements of a Compliance Audit",
+            "question_intents": [
+                "elements of compliance audit",
+                "what are the components of compliance audit",
+                "what are the basic elements"
+            ],
+            "key_points": [
+                "Three parties: auditor, responsible party, intended users",
+                "Subject matter",
+                "Authorities and criteria"
+            ],
+            "content": "Compliance audit contains three core elements: (1) three parties—auditor, responsible party, intended users; (2) subject matter (information/condition/activity evaluated); and (3) authorities and criteria used to assess compliance."
+        },
+        {
+            "id": "KB_AUTHORITIES_CRITERIA_001",
+            "category": "criteria",
+            "title": "Authorities vs Criteria (How the Audit Measures Compliance)",
+            "question_intents": [
+                "what are authorities in compliance audit",
+                "what are audit criteria",
+                "difference between authority and criteria"
+            ],
+            "key_points": [
+                "Authorities: Constitution, Acts, Laws, rules, regulations, contracts, codes, sanctions",
+                "Criteria: benchmarks derived from authorities",
+                "Criteria qualities: relevant, reliable, complete, objective, understandable, comparable, acceptable, available"
+            ],
+            "content": "Authorities are the governing sources (Constitution, laws, rules, regulations, contracts, codes, sanctions, policy). Criteria are the benchmarks derived from authorities and must be relevant, reliable, complete, objective, understandable, comparable, acceptable, and available to support consistent evaluation."
+        },
+        {
+            "id": "KB_PROCESS_001",
+            "category": "process",
+            "title": "Compliance Audit Process (End-to-End Flow)",
+            "question_intents": [
+                "compliance audit process",
+                "steps in compliance audit",
+                "workflow of compliance audit",
+                "how compliance audits are conducted"
+            ],
+            "key_points": [
+                "Plan (general principles + annual plan)",
+                "Planning compliance audits (scope/objectives/criteria/risk/materiality)",
+                "Performing audit & evidence gathering",
+                "Evaluating evidence & conclusions",
+                "Reporting + follow-up"
+            ],
+            "content": "Compliance audit follows a structured flow: (1) general principles and annual compliance audit plan, (2) planning individual compliance audits (objective, scope, strategy, criteria, risk, materiality), (3) performing audit and gathering evidence, (4) evaluating evidence and forming conclusions, and (5) reporting and follow-up."
+        },
+        {
+            "id": "KB_PRINCIPLES_001",
+            "category": "principles",
+            "title": "General Principles (How Auditors Must Work)",
+            "question_intents": [
+                "what principles apply in compliance audit",
+                "professional scepticism",
+                "professional judgement",
+                "ethics in compliance auditing"
+            ],
+            "key_points": [
+                "Professional scepticism + judgement",
+                "Competence and skill requirements",
+                "Code of ethics (integrity, independence, objectivity, confidentiality, competence)",
+                "Quality control responsibility",
+                "Risk and materiality consideration",
+                "Documentation and communication"
+            ],
+            "content": "Auditors must apply professional scepticism and professional judgement throughout the audit. Audit teams must have appropriate competence, follow ethical principles (integrity, independence/objectivity, confidentiality, competence), implement quality control, manage audit risk/materiality, document work sufficiently, and maintain effective communication."
+        },
+        {
+            "id": "KB_RISK_MATERIALITY_001",
+            "category": "risk_materiality",
+            "title": "Audit Risk and Materiality (How Severity is Judged)",
+            "question_intents": [
+                "what is audit risk",
+                "materiality in compliance audit",
+                "how to decide material non compliance",
+                "how auditors judge severity"
+            ],
+            "key_points": [
+                "Audit risk types: inherent, control, detection",
+                "Materiality includes monetary + qualitative aspects",
+                "Materiality influenced by public interest, fraud, legislative focus"
+            ],
+            "content": "Audit risk is the risk of an inappropriate conclusion and includes inherent risk, control risk, and detection risk. Materiality depends on professional judgement and includes quantitative and qualitative aspects. Matters like fraud, concealment, unlawful acts, and legislative/public sensitivity can be material even without high monetary value."
+        },
+        {
+            "id": "KB_EVIDENCE_001",
+            "category": "evidence",
+            "title": "Audit Evidence (Sufficiency and Appropriateness)",
+            "question_intents": [
+                "what is audit evidence",
+                "sufficiency and appropriateness of evidence",
+                "how evidence is evaluated",
+                "how to validate compliance evidence"
+            ],
+            "key_points": [
+                "Sufficiency = quantity, depends on risk",
+                "Appropriateness = relevance, validity, reliability",
+                "Reliability stronger when external, direct, documentary, corroborated"
+            ],
+            "content": "Audit evidence supports conclusions. Sufficiency refers to the quantity of evidence (higher risk needs more). Appropriateness refers to evidence quality: relevance, validity, and reliability. Reliability improves if evidence is external, obtained directly by the auditor, in documentary form, and corroborated across sources."
+        },
+        {
+            "id": "KB_EVIDENCE_TECHNIQUES_001",
+            "category": "evidence_methods",
+            "title": "How Evidence is Collected (Techniques)",
+            "question_intents": [
+                "how do auditors collect evidence",
+                "evidence gathering techniques",
+                "methods used for audit evidence"
+            ],
+            "key_points": [
+                "Document scrutiny",
+                "Physical inspection/site visit",
+                "Observation",
+                "Questionnaires",
+                "Surveys",
+                "Confirmation",
+                "Re-performance",
+                "Analytical procedures"
+            ],
+            "content": "Evidence may be collected using document scrutiny, physical inspection/site visits, observation of processes, questionnaires, surveys, confirmation from third parties, re-performance of procedures, and analytical procedures including data comparisons and outlier analysis."
+        },
+        {
+            "id": "KB_SCOPE_001",
+            "category": "planning",
+            "title": "Scope Definition (What/Who/Where/Period)",
+            "question_intents": [
+                "how to define audit scope",
+                "what is audit scope",
+                "scope in compliance audit"
+            ],
+            "key_points": [
+                "What to audit (subject matter for regularity + propriety across units)",
+                "Who to audit (apex entity + selected audit units)",
+                "Where to audit (unit/transaction sampling decisions)",
+                "Which period to audit (typically since last audit, risk-driven)"
+            ],
+            "content": "Audit scope defines what to audit, who to audit, where to audit, and which period to audit. Scope is shaped by risk and materiality. Typically the audit period covers time since previous audit, but may extend based on risk indicators or concerns."
+        },
+        {
+            "id": "KB_PLANNING_OUTPUT_001",
+            "category": "planning",
+            "title": "Audit Strategy vs Audit Plan (What Must Be Documented)",
+            "question_intents": [
+                "difference between audit strategy and audit plan",
+                "how to plan compliance audit",
+                "what is included in audit plan"
+            ],
+            "key_points": [
+                "Strategy: environment, framework, users, materiality, risks, scope, objectives, criteria, sampling",
+                "Plan: units selection, implementing units sample, timing, team assignment, procedures, evidence"
+            ],
+            "content": "Audit strategy defines the overall approach: entity environment, regulatory framework, intended users, materiality, risks, scope, objectives, criteria, and sampling considerations. Audit plan operationalizes execution: selected units, sample of implementing units, timing, team formation, task allocation, procedures, and evidence to be collected."
+        },
+        {
+            "id": "KB_REPORTING_001",
+            "category": "reporting",
+            "title": "Reporting Principles (How the Report Must Be Written)",
+            "question_intents": [
+                "how should audit reports be written",
+                "principles of compliance audit reporting",
+                "reporting process in compliance audit"
+            ],
+            "key_points": [
+                "Completeness",
+                "Objectivity",
+                "Timeliness",
+                "Contradictory process (validate facts with entity and include responses where appropriate)"
+            ],
+            "content": "Compliance audit reporting should follow completeness (consider all relevant evidence), objectivity (factually correct and balanced conclusions), timeliness (report in due time), and contradictory process (validate facts with auditable entity and incorporate responses where appropriate)."
+        },
+        {
+            "id": "KB_RESPONSE_SCHEMA_001",
+            "category": "output_format",
+            "title": "Standard JSON Output Format for Your Compliance Agent",
+            "question_intents": [
+                "give compliance status",
+                "audit this",
+                "is this compliant",
+                "tell me more about the requirements",
+                "explain compliance findings"
+            ],
+            "answer_guidance": {
+                "format": "strict_json",
+                "must_include_keys": [
+                    "query",
+                    "compliance_status",
+                    "confidence",
+                    "summary",
+                    "key_requirements",
+                    "key_findings",
+                    "evidence_expected",
+                    "risk_level",
+                    "recommended_actions",
+                    "references"
+                ],
+                "compliance_status_values": [
+                    "COMPLIANT",
+                    "PARTIALLY_COMPLIANT",
+                    "NON_COMPLIANT",
+                    "INSUFFICIENT_EVIDENCE"
+                ]
+            },
+            "content": "When answering compliance questions, always return a structured JSON response. If regulatory evidence is missing from retrieved context, mark the status as INSUFFICIENT_EVIDENCE and list what evidence is required. Keep findings grounded in retrieved context only."
+        }
+    ]
+}

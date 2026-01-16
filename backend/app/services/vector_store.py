@@ -60,14 +60,33 @@ class VectorStoreService:
         if self.vector_db is None:
             return []
         
-        # 1. Broad Search: Get more candidates than needed (e.g., 3x)
-        # We start with Cosine Similarity to find "potentially relevant" chunks.
-        candidates = self.vector_db.similarity_search(query, k=k*3)
+        # 1. Broad Search with scores
+        # Get similarity scores to enable fast-track detection
+        candidates_with_scores = self.vector_db.similarity_search_with_score(query, k=k*3)
         
-        if not candidates:
+        if not candidates_with_scores:
             return []
-
-        # 2. Reranking (The Advanced Step)
+        
+        # FAST TRACK: Check if top result has very high similarity (Golden KB match)
+        # Similarity scores in FAISS are distances (lower = better for L2, higher = better for cosine)
+        # For the default L2 distance, we check if distance is very low
+        top_doc, top_score = candidates_with_scores[0]
+        
+        # If top result is a Golden KB entry with high confidence, skip reranking
+        # L2 distance: lower is better, typically < 0.5 is excellent
+        # Check metadata to confirm it's a KB entry
+        is_kb_entry = top_doc.metadata.get("type") == "kb_entry"
+        is_high_confidence = top_score < 0.5  # Low distance = high similarity
+        
+        if is_kb_entry and is_high_confidence:
+            print(f"[FAST TRACK] Golden KB match detected (score: {top_score:.4f}), skipping reranking")
+            # Return top k candidates directly without reranking
+            return [doc for doc, score in candidates_with_scores[:k]]
+        
+        # 2. Standard Path: Reranking (The Advanced Step)
+        # Extract just the documents for reranking
+        candidates = [doc for doc, score in candidates_with_scores]
+        
         # We pair the query with each document text: [(Query, Doc1), (Query, Doc2)...]
         model_inputs = [[query, doc.page_content] for doc in candidates]
         
